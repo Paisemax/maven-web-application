@@ -95,14 +95,14 @@
 	<distributionManagement>
 	    <repository>
 	      <id>nexus</id>
-	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://52.53.227.31:8191/landmark/repository/tesla-fe-releases/</url>
+	      <name>Paisemax Releases Nexus Repository</name>
+	      <url>http://34.228.64.119:8081/sidodat/repository/sidodat-releases/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
-	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://52.53.227.31:8191/landmark/repository/tesla-fe-snapshots/</url>
+	      <name>Paisemax Snapshot Nexus Repository </name>
+	      <url>http://34.228.64.119:8081/sidodat/repository/sidodat-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
