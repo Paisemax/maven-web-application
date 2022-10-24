@@ -96,7 +96,7 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Paisemax Releases Nexus Repository</name>
-	      <url>http://34.228.64.119:8081/sidodat/repository/sidodat-releases/</url>
+	      <url> http://34.228.64.119:8081/sidodat/repository/sidodat-releases/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
