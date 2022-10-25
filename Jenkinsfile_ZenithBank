@@ -22,7 +22,7 @@ node{
     deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.196.115.220:8080/')], contextPath: null, war: 'target/*war'
   }
   stage('6approvalGate'){
-    sh "echo 'ready for review' "
+    //sh "echo 'ready for review' "
     //timeout(time:5, unit:'DAYS') {
     //input message: 'Application ready for deployment, Please review and approve'
       }
