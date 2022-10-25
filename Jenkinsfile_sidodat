@@ -1,0 +1,40 @@
+node{
+  def mavenHome = tool name: 'maven3.8.6'
+  stage('1cloneCode'){
+    git "https://github.com/Paisemax/maven-web-application"
+  }
+  stage('2Test&Build'){
+    sh "${mavenHome}/bin/mvn clean package"
+    //bat "${mavenHome}/bin/mvn clean package"
+  }
+  stage('3codeQuality'){
+    sh "${mavenHome}/bin/mvn sonar:sonar"
+  }
+  stage('4uploadArtifacts'){
+    //sh "${mavenHome}/bin/mvn deploy"
+    //http://34.228.64.119:8081/sidodat/repository/sidodat-snapshot/
+    //http://34.228.64.119:8081/sidodat/repository/sidodat-releases/
+    // vi pom.xml and added repository details   
+    // vi setting.xml and add AUTHENTICATION details  
+  } 
+  stage('5deploy2UAT'){
+    sh "echo 'deploy to UAT'  "
+    deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.196.115.220:8080/')], contextPath: null, war: 'target/*war'
+  }
+  stage('6approvalGate'){
+    //sh "echo 'ready for review' "
+    //timeout(time:5, unit:'DAYS') {
+    //input message: 'Application ready for deployment, Please review and approve'
+      }
+  }
+  stage('7deploy2Prod'){
+    deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.196.115.220:8080/')], contextPath: null, war: 'target/*war'
+  }
+  stage('8emailNotification'){
+    emailext body: '''Hi All,
+
+Check Build status.
+
+Paisemax''', recipientProviders: [buildUser(), developers(), upstreamDevelopers(), brokenBuildSuspects(), brokenTestsSuspects(), contributor()], subject: 'build status', to: 'tesla-app@gmail.com'
+  }
+}
